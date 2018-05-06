@@ -1,8 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何搭建个人博客 · ZACKON</title><meta name="description" content="如何搭建个人博客 - bluecube13"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="ZACKON"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/xk1213" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/bluecube13" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何搭建个人博客</h1><div class="post-info">May 4, 2018</div><div class="post-content"><blockquote>
 <p>这篇文章将介绍如何使用Hexo框架搭配Github Pages构建个人静态博客，并解答了一些本人构建过程中遇到的困难，希望有所帮助</p>
 </blockquote>
-<p>#前言</p>
-<p>如今常用的构建个人博客的方式有如下几种：</p>
+<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>如今常用的构建个人博客的方式有如下几种：</p>
 <ul>
 <li><p>使用CSDN，简书等网站提供的博客服务</p>
 </li>
@@ -15,8 +14,7 @@
 <p>本人进行的所有工作都在macOS进行（macOS High Sierra 10.13.4）</p>
 </blockquote>
 <a id="more"></a>
-<p>##摘要</p>
-<ul>
+<h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h4><ul>
 <li><a href="#1">配置Github Pages</a></li>
 <li><a href="#2">安装Hexo</a></li>
 <li><a href="#3">使用博客</a></li>
@@ -92,4 +90,32 @@
 <p>之后再按照正常的步骤安装Hexo即可</p>
 <h4 id="3">使用博客</h4>
 
+<p>首先要cd到你所创建的博客文件夹中再在终端执行以下的命令</p>
+<ul>
+<li>发表新博客</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># layout有post，page等，post是创建一篇新博客，page是创建一个新页面，比如about页面</span></span><br><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line"><span class="comment"># 举例</span></span><br><span class="line">hexo new post xxx <span class="comment">#xxx即为你的文章标题</span></span><br></pre></td></tr></table></figure>
+<p>之后在博客文件夹下的source文件夹内便可以看到你新建的文章xxx.md，使用markdown编辑器打开即可进行文章的书写</p>
+<ul>
+<li>删除博客</li>
+</ul>
+<p>在博客文件夹下的source文件夹内删除想要删除的文章即可</p>
+<ul>
+<li>进行预览</li>
+</ul>
+<p>在终端输入以下指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p xxxx <span class="comment">#xxxx为想要设置的端口号</span></span><br></pre></td></tr></table></figure>
+<p>之后在浏览器内输入<code>http://localhost:xxxx</code>即可看到自己博客的预览</p>
+<p><strong>TIP</strong>：可以通过这种方式实时的查看自己正在写的文章的排版和样式</p>
+<ul>
+<li>发布文章</li>
+</ul>
+<p>将文章发布到Github，这样在何时何地都能够访问自己的博客中的文章</p>
+<p>首先需要安装上传插件<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>，在Terminal中<strong>cd到博客文件夹</strong>，之后输入以下语句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>之后在_config.yml中配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:username/username.github.io.git <span class="comment">#username为你的github用户名</span></span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>配置之后在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+<p>即可把变更上传到github</p>
 </div></article></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2018 <a href="http://yoursite.com">bluecube13</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
