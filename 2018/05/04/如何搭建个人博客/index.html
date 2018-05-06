@@ -1,7 +1,8 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何搭建个人博客 · ZACKON</title><meta name="description" content="如何搭建个人博客 - bluecube13"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="ZACKON"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/xk1213" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/bluecube13" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何搭建个人博客</h1><div class="post-info">May 4, 2018</div><div class="post-content"><blockquote>
 <p>这篇文章将介绍如何使用Hexo框架搭配Github Pages构建个人静态博客，并解答了一些本人构建过程中遇到的困难，希望有所帮助</p>
 </blockquote>
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>如今常用的构建个人博客的方式有如下几种：</p>
+<p>#前言</p>
+<p>如今常用的构建个人博客的方式有如下几种：</p>
 <ul>
 <li><p>使用CSDN，简书等网站提供的博客服务</p>
 </li>
@@ -14,7 +15,8 @@
 <p>本人进行的所有工作都在macOS进行（macOS High Sierra 10.13.4）</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h4><ul>
+<p>##摘要</p>
+<ul>
 <li><a href="#1">配置Github Pages</a></li>
 <li><a href="#2">安装Hexo</a></li>
 <li><a href="#3">使用博客</a></li>
@@ -55,4 +57,39 @@
 <p>一切顺利的话，在Terminal中应该能看到以下内容：</p>
 <p><img src="https://i.loli.net/2018/05/05/5aed7c8a0d485.png" alt="屏幕快照 2018-05-05 下午5.41.59.png"></p>
 <p>之后访问链接就能看见自己的主页了</p>
-<div class="tip"><br><br>以上是正常的安装过程，但本人安装时遇到了很多的问题<br><br></div></div></article></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2018 <a href="http://yoursite.com">bluecube13</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<div class="tip"><br><br>以上是正常的安装过程，但本人安装时遇到了很多的问题<br><br></div>
+
+<p>在按照正常的步骤试用Homebrew成功安装了Node.js和Hexo后，输入hexo提示command not found，进行搜索后发现是因为没有指定Node.js的版本导致的，因此，为了成功的解决，我开始了以下的安装步骤：</p>
+<ul>
+<li>卸载已安装的Node.js</li>
+</ul>
+<p>在Terminal中输入以下代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew remove --force node</span><br><span class="line">sudo rm -r /usr/<span class="built_in">local</span>/lib/node_modules</span><br><span class="line"></span><br><span class="line">brew prune</span><br><span class="line">sudo rm -r /usr/<span class="built_in">local</span>/include/node</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装nvm</li>
+</ul>
+<p>nvm是Node.js的版本管理工具，在Terminal中输入以下代码：</p>
+<div class="tip"><br><br>安装nvm不建议使用<code>brew install nvm</code>直接安装，因为由于brew安装nvm的bug问题，导致安装后缺少文件，无法直接在命令行使用<code>nvm</code>命令<br><br></div>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash</span><br></pre></td></tr></table></figure>
+<p>安装完毕后在终端输入<code>nvm ls</code>命令查看已安装Node.js版本，若还是提示command not found，则输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .bash_profile <span class="comment">#创建bash_profile文件</span></span><br><span class="line">open -e .bash_profile <span class="comment">#打开bash_profile文件</span></span><br></pre></td></tr></table></figure>
+<p>在该文件中输入以下语句，并保存退出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> ] &amp;&amp; \. <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> <span class="comment"># This loads nvm</span></span><br></pre></td></tr></table></figure>
+<p>之后重启Terminal即可安装成功，此时，输入nvm会显示如下，则安装成功：</p>
+<p><img src="https://i.loli.net/2018/05/06/5aee9b558cf6f.png" alt="屏幕快照 2018-05-06 下午2.05.45.png"></p>
+<ul>
+<li>安装Node.js</li>
+</ul>
+<p>使用<code>nvm ls-remote</code>指令来查看现在可以安装的Node.js版本，但我又遇到了问题，输入以上语句后，等待片刻，返回N/A，这显然是不对的，进行查询后，获得如下解决办法，在Terminal中输入以下语句：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -e .bash_profile <span class="comment">#打开bash_profile文件</span></span><br></pre></td></tr></table></figure>
+<p>打开文件后，复制如下内容，并保存退出，重启终端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_NODEJS_ORG_MIRROR=<span class="string">"https://nodejs.org/dist"</span></span><br></pre></td></tr></table></figure>
+<p>之后输入<code>nvm ls-romote</code>指令便能够正常的查看可安装的Node.js版本</p>
+<p>安装Node.js时，在Terminal中输入以下指令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nvm install x.xx.x <span class="comment">#x.xx.x为想要安装的版本，比如我安装的就是8.11.1</span></span><br><span class="line"><span class="comment">#安装成功后输入</span></span><br><span class="line">nvm ls <span class="comment">#查看已安装的版本</span></span><br><span class="line">nvm use x.xx.x <span class="comment">#使用x.xx.x版本的Node.js</span></span><br><span class="line">nvm <span class="built_in">alias</span> default x.xx.x <span class="comment">#指定x.xx.x版本为默认版本</span></span><br></pre></td></tr></table></figure>
+<p>这样，就成功的安装并指定了Node.js版本</p>
+<p>之后再按照正常的步骤安装Hexo即可</p>
+<h4 id="3">使用博客</h4>
+
+</div></article></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2018 <a href="http://yoursite.com">bluecube13</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
