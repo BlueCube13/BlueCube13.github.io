@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-06T06:57:33.485Z</updated>
+  <updated>2018-05-08T13:23:36.631Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 面试题汇总与答案</title>
+    <link href="http://yoursite.com/2018/05/08/Java-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8E%E7%AD%94%E6%A1%88/"/>
+    <id>http://yoursite.com/2018/05/08/Java-面试题汇总与答案/</id>
+    <published>2018-05-08T12:43:14.000Z</published>
+    <updated>2018-05-08T13:23:36.631Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近找实习受挫，一狠下心好好准备一下面试题，刚好找到了慕课网上分享的Java面试题汇总，但是没有答案，刚好自己也通过搜索答案和写下博客的过程加深一下记忆。（<a href="http://www.imooc.com/article/details/id/21265" target="_blank" rel="noopener">慕课网原题地址</a>）</p><a id="more"></a><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul><li>操作系统中heap和stack的区别</li></ul><p>stack的空间由操作系统自动分配和释放，heap的空间由程序员手动的分配和释放，通常使用new关键字分配，Java中，若只是声明一个对象，则在栈中分配内存地址空间，new之后才在堆中分配地址空间</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近找实习受挫，一狠下心好好准备一下面试题，刚好找到了慕课网上分享的Java面试题汇总，但是没有答案，刚好自己也通过搜索答案和写下博客的过程加深一下记忆。（&lt;a href=&quot;http://www.imooc.com/article/details/id/21265&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;慕课网原题地址&lt;/a&gt;）&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>如何搭建个人博客</title>
